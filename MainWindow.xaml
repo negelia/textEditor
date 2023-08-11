@@ -1,0 +1,90 @@
+﻿<Window x:Class="TxEd.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TxEd"
+        mc:Ignorable="d"
+        Title="Text Editor" Height="450" Width="1100">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+    </Window.CommandBindings>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+
+            <ToolBar>
+                <Button Name="Exit" Click="exit_Click" ToolTip="Close" Margin="3 0">
+                    <Image Source="exit.png" Stretch="Uniform" Height="30" Width="30"/>
+                </Button>
+                <Button Click="PrintRTBContent" ToolTip="Print" Margin="3 0">
+                    <Image Source="print.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Button Command="Open" ToolTip="Open" Margin="3 0">
+                    <Image Source="openfile.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Button Command="Save" ToolTip="Save" Margin="3 0">
+                    <Image Source="save.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Button Name="SE" Click="Save_and_exit_Click" ToolTip="Save and exit" Margin="3 0">
+                    <Image Source="savexit.png" Stretch="Uniform" Height="30" Width="30"/>
+                </Button>
+
+                <Separator/>
+                <Button Command="Cut" ToolTip="Cut" Margin="3 0">
+                    <Image Source="cut.png" Stretch="Uniform" Height="30" Width="30"/>
+                </Button>
+                <Button Command="Copy" ToolTip="Copy" Margin="3 0">
+                    <Image Source="copy.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Button Command="Paste" ToolTip="Paste" Margin="3 0">
+                    <Image Source="paste.png" Stretch="Uniform" Height="35" Width="35"/>
+                </Button>
+            </ToolBar>
+            <ToolBar>
+                <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold" ToolTip="Bold" Content="B" FontWeight="Bold" FontSize="15" Margin="5 0">
+                </ToggleButton>
+                <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic" ToolTip="Italic" Content="I" FontStyle="Italic" FontSize="15" Margin="5 0">
+                </ToggleButton>
+                <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline" ToolTip="Underlined" Content="U" FontSize="15" Margin="5 0">
+                </ToggleButton>
+                <Separator/>
+                <Button Command="ToggleBullets" ToolTip="Bullets" Margin="3 0">
+                    <Image Source="bullets.png" Stretch="Uniform" Height="30" Width="30"/>
+                </Button>
+                <Button Command="ToggleNumbering" ToolTip="Numbering" Margin="3 0">
+                    <Image Source="numbers.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Separator/>
+                <Button Command="AlignLeft" ToolTip="Align Left">
+                    <Image Source="left.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Button Command="AlignCenter" ToolTip="Align Center">
+                    <Image Source="center.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Button Command="AlignRight" ToolTip="Align Right">
+                    <Image Source="right.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Button Command="AlignJustify" ToolTip="Align Justify">
+                    <Image Source="justify.png" Stretch="Uniform" Height="25" Width="25"/>
+                </Button>
+                <Separator />
+                <ComboBox Name="cmbFontFamily" Width="100" SelectionChanged="cmbFontFamily_SelectionChanged" Margin="10 0"/>
+                <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
+                <Button Width="50" Height="Auto" ToolTip="Change font color" Click="Button_Click" Margin="10 0">
+                    <Image Source="color.png" Stretch="Uniform" Height="30" Width="30"/>
+                </Button>
+                <ComboBox Name="LineHeight" VerticalAlignment="Stretch" SelectionChanged="LineHeight_SelectionChanged" Width="100" Height="20">
+                    <TextBlock Text="10px"/>
+                    <TextBlock Text="20px"/>
+                    <TextBlock Text="0,5cm"/>
+                    <TextBlock Text="1cm"/>
+                    <TextBlock Text="1,5cm"/>
+                    <TextBlock Text="2cm"/>
+                </ComboBox>
+            </ToolBar>
+        </ToolBarTray>
+        <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+    </DockPanel>
+</Window>
